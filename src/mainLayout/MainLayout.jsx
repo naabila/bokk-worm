@@ -18,9 +18,7 @@ function MainLayout() {
 
 
 
-        {/* <Header />
-        <Outlet></Outlet>
-        <Footer></Footer> */}
+        
     </>
   )
 }
