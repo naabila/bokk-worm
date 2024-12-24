@@ -4,10 +4,11 @@ import SectionBanner from '../components/SectionBanner'
 import { GiCogLock } from 'react-icons/gi'
 import useAxiosSecure from '../hook/useAxiosSecure';
 import DynamicTitle from "../components/DynamicTitle"
+import { toast } from 'react-toastify';
 function AddBooks() {
   const axios=useAxiosSecure()
   //Add book fn
-  const handleAddBooks=(e)=>{
+  const handleAddBooks=async (e)=>{
   e.preventDefault();
   const form=e.target;
   const name=form.name.value;
@@ -28,8 +29,18 @@ function AddBooks() {
     content}
 console.log(bookData)
 //post data
-const {data}=axios.post('/add-books',bookData)
-.then(res=>console.log(res.data))
+try {
+  const response = await axios.post('/add-books', bookData);
+  if (response.data.insertedId) {
+    toast.success("Book added successfully!");
+    form.reset(); 
+  } else {
+    toast.error("Failed to add book.");
+  }
+} catch (error) {
+  console.error(error);
+  toast.error("An error occurred while adding the book.");
+}
 
 
 }

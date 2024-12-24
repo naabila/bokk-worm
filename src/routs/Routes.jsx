@@ -12,6 +12,7 @@ import CategoryBooks from "../pages/CategoryBooks";
 import Login from "../pages/Login";
 import Error from "../pages/Error";
 import Register from "../pages/Register";
+import Update from "../pages/Update"
 const router = createBrowserRouter([
   {
     path: "/",
@@ -48,6 +49,11 @@ const router = createBrowserRouter([
       {
         path:"/register",
         element: <Register></Register>
+      },
+      {
+        path:"/update/:id",
+        loader:({params})=>fetch(`${import.meta.env.API_URL}/${params.id}`),
+        element: <Update></Update>
       }
     ]
   },
