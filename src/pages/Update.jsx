@@ -2,11 +2,12 @@ import React, { useState } from 'react'
 import { Fade } from 'react-awesome-reveal'
 import SectionBanner from '../components/SectionBanner'
 import useAxiosSecure from '../hook/useAxiosSecure'
-import { useLoaderData } from 'react-router-dom'
+import { useLoaderData, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 
 function Update() {
 const loadBook=useLoaderData();
+const navigate=useNavigate();
 const[updateBook,setUpdateBook]=useState(loadBook);
 console.log(updateBook)
 const axios=useAxiosSecure();
@@ -31,7 +32,8 @@ try{
   const data=await axios.put(`${import.meta.env.VITE_API_URL}/update-book/${updateBook._id}`,bookData)
 .then(res=>{
   if(res.data.modifiedCount){
-    toast.success("Book updated successfully")
+    toast.success("Book updated successfully");
+    navigate("/allbooks")
   }else{
     toast.error("error updating book")
   }
