@@ -13,7 +13,10 @@ import Login from "../pages/Login";
 import Error from "../pages/Error";
 import Register from "../pages/Register";
 import Update from "../pages/Update"
+import useAxiosSecure from "../hook/useAxiosSecure";
+
 const router = createBrowserRouter([
+  
   {
     path: "/",
     element: <MainLayout />,
@@ -52,7 +55,10 @@ const router = createBrowserRouter([
       },
       {
         path:"/update/:id",
-        loader:({params})=>fetch(`${import.meta.env.API_URL}/${params.id}`),
+        loader: ({ params }) =>
+          fetch(`${import.meta.env.VITE_API_URL}/book-data/${params.id}`, {
+            credentials: 'include',
+          }),
         element: <Update></Update>
       }
     ]

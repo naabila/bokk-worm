@@ -37,7 +37,7 @@ try{
           <option value="Table">Table View</option>
         </select>
       </div>
-        <Fade>
+        <Fade className='my-[100px]'>
           {
             view==="Grid"?
             <GridView books={books} />
