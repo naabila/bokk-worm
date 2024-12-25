@@ -34,7 +34,11 @@ const router = createBrowserRouter([
         element:<AllBooks></AllBooks>
       },
       {
-        path:"/bookdetails",
+        path:"/bookdetails/:id",
+        loader: ({ params }) =>
+          fetch(`${import.meta.env.VITE_API_URL}/book-data/${params.id}`, {
+            credentials: 'include',
+          }),
         element: <BookDetails></BookDetails>
       },
       {
