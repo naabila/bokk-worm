@@ -13,11 +13,11 @@ function AddBooks() {
   const form=e.target;
   const name=form.name.value;
   const image=form.image.value;
-  const quantity=form.quantity.value;
+  const quantity=parseInt(form.quantity.value);
   const author=form.authorName.value;
   const book_category=form.querySelector("select").value;
   const description=form.description.value;
-  const rating=form.rating.value;
+  const rating=parseInt(form.rating.value);
   const content=form.content.value;
   const bookData={name,
     image,
