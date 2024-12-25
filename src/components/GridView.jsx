@@ -9,8 +9,8 @@ function GridView({books}) {
      <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 items-center">
      {
         books.map((book)=>{
-            return(
-                <div key={book._id} className="card bg-base-100  shadow-xl">
+    return(
+  <div key={book._id} className="card bg-base-100  shadow-xl">
   <figure className='w-[90px] self-center mt-5 rounded-none'>
     <img
       src={book.image} />

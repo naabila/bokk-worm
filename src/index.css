@@ -13,3 +13,7 @@ img{
     max-width: 100%;
     width: 100%;
 }
+button:hover{
+    transform: translateY(-5px);
+    transition: ease-in .3s;
+}

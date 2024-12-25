@@ -1,14 +1,22 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import banner1 from "../assets/banner-1.jpg";
 import banner2 from "../assets/banner-2.jpg";
 import banner3 from "../assets/banner-3.jpg";
-// Import Swiper styles
+import Category1 from "../assets/c1.jpg"
+import Category2 from "../assets/c2.jpg"
+import Category3 from "../assets/c3.jpg"
+import Category4 from "../assets/c4.jpg"
 import 'swiper/css';
 import 'swiper/css/navigation';
 import { Autoplay, Navigation,Pagination } from 'swiper/modules';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Fade } from 'react-awesome-reveal';
+import useAxiosSecure from '../hook/useAxiosSecure';
+import SectionHeadings from '../components/SectionHeadings';
+
+
+
 const sliderContent=[
   {
     title:'Empowering Minds, One Book at a Time',
@@ -26,6 +34,26 @@ const sliderContent=[
   }
 ]
 function Home() {
+  const[books,setBooks]=useState([])
+  const axios=useAxiosSecure()
+  //fecthing book data
+  useEffect(()=>{
+    fetchBookData()
+    
+      },[axios])
+    const fetchBookData=async ()=>{
+    try{
+      const {data}=axios.get('/add-books')
+      .then(res=>setBooks(res.data))
+    }catch(err){
+      console.log("Error loading Books data",err)
+    }
+    }
+    console.log(books)
+console.log(books.book_category)
+
+
+
   const navigate=useNavigate();
   return (
     <>
@@ -64,6 +92,84 @@ function Home() {
         })
       }
     </Swiper>
+
+    <div className="container mx-auto">
+      <SectionHeadings title='Featured Category' />
+
+      {/* category card */}
+      <div className="grid p-5 grid-cols-2 md:grid-cold-2 lg:grid-cols-4 gap-5">
+        {/* card 1 */}
+        <Link to='/bookcategory/Novel'>
+        <div className="card bg-base-100 image-full  shadow-xl">
+  <figure>
+    <img
+      src={Category1}
+      alt="Shoes" />
+  </figure>
+  <div className="card-body justify-center items-center gap-3">
+    <h2 className="card-title">Novel</h2>
+    
+    <div className="card-actions justify-center">
+      <button className="px-5 py-3 rounded-none bg-red-500 border-none text-white">See more </button>
+    </div>
+  </div>
+</div>
+</Link>
+       
+{/* card-2 */}
+<Link to='/bookcategory/Thriller'>
+        <div className="card bg-base-100 image-full  shadow-xl max-h-[230px]">
+  <figure>
+    <img
+      src={Category2}
+      alt="Shoes" />
+  </figure>
+  <div className="card-body justify-center items-center gap-3">
+    <h2 className="card-title">Thriller</h2>
+    
+    <div className="card-actions justify-center">
+      <button className="px-5 py-3 rounded-none bg-red-500 border-none text-white">See more </button>
+    </div>
+  </div>
+</div>
+</Link>
+{/* card 3 */}
+<Link to='/bookcategory/History'>
+        <div className="card bg-base-100 image-full max-h-[230px] shadow-xl">
+  <figure>
+    <img
+      src={Category3}
+      alt="Shoes" />
+  </figure>
+  <div className="card-body justify-center items-center gap-3">
+    <h2 className="card-title">History</h2>
+    
+    <div className="card-actions justify-center">
+      <button className="px-5 py-3 rounded-none bg-red-500 border-none text-white">See more </button>
+    </div>
+  </div>
+</div>
+</Link>
+{/* card-4 */}
+<Link to='/bookcategory/Drama'>
+        <div className="card bg-base-100 image-full max-h-[230px] shadow-xl">
+  <figure>
+    <img
+      src={Category4}
+      alt="Shoes" />
+  </figure>
+  <div className="card-body justify-center items-center gap-3">
+    <h2 className="card-title">Drama</h2>
+    
+    <div className="card-actions justify-center">
+      <button className="px-5 py-3 rounded-none bg-red-500 border-none text-white">See more </button>
+    </div>
+  </div>
+</div>
+</Link>
+</div>
+
+    </div>
   </>
   )
 }

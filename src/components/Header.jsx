@@ -39,7 +39,7 @@ const handleLogout=()=>{
       </div>
       <ul
         tabIndex={0}
-        className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow gap-5">
+        className="menu menu-sm dropdown-content bg-base-100 rounded-box mt-3 w-52 p-2 shadow gap-5 z-50">
         {links}
         <Link to='login'>
       <button className='bg-red-500 text-white px-8 py-3 hover:bg-black transition md:hidden flex'>Login</button>
@@ -66,7 +66,7 @@ const handleLogout=()=>{
   <>
     <img id="clickable" className='my-anchor-element h-[50px] w-[50px] rounded-full' src={user.photoURL} alt="user" />
    <div className="relative">
-   <Tooltip anchorSelect=".my-anchor-element ,#clickable" 
+   <Tooltip className='z-[60]' anchorSelect=".my-anchor-element ,#clickable" 
      clickable 
     place="bottom">
   <div>
