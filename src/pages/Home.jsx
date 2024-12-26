@@ -7,6 +7,7 @@ import Category1 from "../assets/c1.jpg"
 import Category2 from "../assets/c2.jpg"
 import Category3 from "../assets/c3.jpg"
 import Category4 from "../assets/c4.jpg"
+import About from "../assets/about.jpg"
 import 'swiper/css';
 import 'swiper/css/navigation';
 import { Autoplay, Navigation,Pagination } from 'swiper/modules';
@@ -15,8 +16,34 @@ import { Fade } from 'react-awesome-reveal';
 import useAxiosSecure from '../hook/useAxiosSecure';
 import SectionHeadings from '../components/SectionHeadings';
 
+//testimonial
+
+const testimonials = [
+  {
+    name: 'Ariana Grande',
+    role: 'Student',
+    message:
+      'This platform has completely transformed the way I access and manage books. The user-friendly interface makes it super easy to find what I need, and I love the variety of resources available.',
+    image: 'https://randomuser.me/api/portraits/women/44.jpg',
+  },
+  {
+    name: 'John Doe',
+    role: 'Professor',
+    message:
+      'As an educator, I appreciate how this system streamlines the borrowing process and keeps everything organized. It’s been a valuable tool for both myself and my students.',
+    image: 'https://randomuser.me/api/portraits/men/45.jpg',
+  },
+  {
+    name: 'Jane Smith',
+    role: 'Librarian',
+    message:
+      'Managing our library has never been easier. The features are intuitive, and the support team is incredibly responsive. Highly recommended for libraries of any size.',
+    image: 'https://randomuser.me/api/portraits/women/46.jpg',
+  },
+];
 
 
+//slider
 const sliderContent=[
   {
     title:'Empowering Minds, One Book at a Time',
@@ -168,10 +195,137 @@ console.log(books.book_category)
 </div>
 </Link>
 </div>
+{/* extra 1 */}
+<div className="container relative mx-auto py-16 px-4 grid md:grid-cols-2 gap-8 items-center">
+      {/* Text and Features */}
+      <Fade direction='left'>
+      <div>
+        {/* Heading and Subtext */}
+        <h2 className='text-3xl font-bold mb-5'>About Us</h2>
+        <div className="mb-8">
+          <div className="flex gap-2">
+            <div className="w-4 h-4 bg-red-500 rounded-full"></div>
+            <div className="w-4 h-4 bg-red-500 rounded-full"></div>
+            <div className="w-4 h-4 bg-red-500 rounded-full"></div>
+          </div>
+          <p className="mt-4 text-gray-600">
+            Discover the best way to manage your library efficiently. Explore features designed to keep books and members in sync.
+          </p>
+        </div>
 
+        {/* Features Grid */}
+        <div className="grid sm:grid-cols-2 gap-8">
+          {/* Feature 1 */}
+          <div className="flex flex-col items-start">
+            <div className="text-blue-500 text-3xl mb-2">
+              📇
+            </div>
+            <h3 className="font-bold text-xl">Member Card</h3>
+            <p className="text-gray-600">
+              Register members and manage their information with ease.
+            </p>
+          </div>
+
+          {/* Feature 2 */}
+          <div className="flex flex-col items-start">
+            <div className="text-blue-500 text-3xl mb-2">
+              🏆
+            </div>
+            <h3 className="font-bold text-xl">High-Quality Books</h3>
+            <p className="text-gray-600">
+              Access a wide variety of curated and high-quality books.
+            </p>
+          </div>
+
+          {/* Feature 3 */}
+          <div className="flex flex-col items-start">
+            <div className="text-blue-500 text-3xl mb-2">
+              📚
+            </div>
+            <h3 className="font-bold text-xl">Free Books</h3>
+            <p className="text-gray-600">
+              Borrow books for free and enjoy a seamless reading experience.
+            </p>
+          </div>
+
+          {/* Feature 4 */}
+          <div className="flex flex-col items-start">
+            <div className="text-blue-500 text-3xl mb-2">
+              📄
+            </div>
+            <h3 className="font-bold text-xl">Up-to-Date Books</h3>
+            <p className="text-gray-600">
+              Always find the latest editions of your favorite books.
+            </p>
+          </div>
+        </div>
+      </div>
+      </Fade>
+
+      {/* Image */}
+      <Fade direction='right'>
+      <div className="relative">
+        <img
+          src={About}
+          alt="Library kid"
+          className="rounded-xl"
+        />
+       
+      </div>
+      </Fade>
+    </div>
+    {/* extra2 */}
+    <div className='mt-10'>
+      <SectionHeadings title='What People Say About Us' />
+    </div>
+    <div
+      className="bg-cover relative bg-center text-white py-16"
+      style={{
+        backgroundImage:
+          "url('https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080')",
+          backgroundSize:"cover",
+          backgroundPosition: "center center" 
+      }}
+    >
+    <div className='h-full w-full bg-black/50 top-0 bottom-0 left-0 ri' style={{
+      position:"absolute"
+
+    }}></div>
+      <div className="container mx-auto text-center">
+        <h2 className="text-4xl font-bold mb-4">What People Say</h2>
+        <div className="divider w-20 mx-auto"></div>
+
+        <Swiper
+          pagination={{ clickable: true }}
+          navigation={true}
+          modules={[Pagination, Navigation]}
+          className="my-10"
+        >
+          {testimonials.map((testimonial, index) => (
+            <SwiperSlide key={index}>
+              <div className="max-w-2xl mx-auto text-center">
+                <p className="italic text-lg mb-6">{testimonial.message}</p>
+                <div className="flex justify-center items-center gap-4">
+                  <img
+                    src={testimonial.image}
+                    alt={testimonial.name}
+                    className="w-16 h-16 rounded-full border-2 border-blue-500"
+                  />
+                  <div>
+                    <h5 className="text-xl font-semibold">{testimonial.name}</h5>
+                    <p className="text-sm">{testimonial.role}</p>
+                  </div>
+                </div>
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
+    </div>
+    
     </div>
   </>
   )
 }
 
-export default Home
+export default Home;

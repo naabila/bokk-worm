@@ -5,6 +5,7 @@ import { Fade } from 'react-awesome-reveal';
 import { AuthContext } from '../utils/AuthProvider';
 import useAxiosSecure from '../hook/useAxiosSecure';
 import { toast } from 'react-toastify';
+import DynamicTitle from '../components/DynamicTitle';
 
 function BookDetails() {
   const{user}=useContext(AuthContext);
@@ -66,6 +67,7 @@ const handleBorrowBook = async (e) => {
   return (
     <>
     <SectionBanner title="See Details" />
+    <DynamicTitle title={loadDetails?.name} />
     <Fade>
     <div className="container mx-auto px-4 sm:px-6 lg:px-8">
       <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">

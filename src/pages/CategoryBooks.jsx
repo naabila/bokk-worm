@@ -5,14 +5,16 @@ import SectionHeadings from '../components/SectionHeadings';
 import Rating from 'react-rating';
 import { FaRegStar } from 'react-icons/fa';
 import { IoIosStar } from 'react-icons/io';
+import DynamicTitle from '../components/DynamicTitle';
 
 function CategoryBooks() {
   const loadBooks=useLoaderData();
   const[books,setBooks]=useState(loadBooks)
-  console.log(loadBooks)
+  
   return (
    <>
     <SectionBanner title="Book Category" />
+    <DynamicTitle title="Category" />
     <div className="container mx-auto">
       <SectionHeadings title='Explore Books Of Your Favourite Category' />
       {/* book cards */}

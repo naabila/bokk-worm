@@ -3,6 +3,7 @@ import { useLoaderData } from 'react-router-dom';
 import SectionBanner from '../components/SectionBanner';
 import useAxiosSecure from '../hook/useAxiosSecure';
 import { toast } from 'react-toastify';
+import DynamicTitle from '../components/DynamicTitle';
 
 function BorrowedBooks() {
   
@@ -39,6 +40,7 @@ const handleDelete = async (id, bookId) => {
   return (
     <>
       <SectionBanner title="My Borrowed Books" />
+      <DynamicTitle title='Borrow books' />
       <div className="container mx-auto">
         <table className="table table-zebra mt-10 table-xs md:table-md lg:table-lg">
           {/* Table Head */}
