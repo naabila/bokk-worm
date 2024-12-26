@@ -9,14 +9,17 @@ const[loader,setLoader]=useState(true)
 
 //Register user
 const registerUser=(email,password)=>{
+  setLoader(true)
   return createUserWithEmailAndPassword(auth,email,password);
 }
 //google login 
 const loginWithGoogle=(provider)=>{
+  setLoader(true)
   return signInWithPopup(auth, provider)
 }
 //email login
 const emailSignIn=(email,password)=>{
+  setLoader(true)
   return signInWithEmailAndPassword(auth, email, password)
 }
 
@@ -25,9 +28,10 @@ useEffect(()=>{
   const unsubscribe=onAuthStateChanged(auth, async(currentUser) => {
     if(currentUser?.email){
       setUser(currentUser);
+      
       const {data}=await axios.post(`${import.meta.env.VITE_API_URL}/jwt`,{email:currentUser?.email},{withCredentials: true })
     }else{
-      setUser(currentUser)
+      setUser(null)
       const { data } = await axios.get(
         `${import.meta.env.VITE_API_URL}/logout`,
         { withCredentials: true }
@@ -62,7 +66,7 @@ const forgetPassword=(email)=>{
 }
 
 const authInfo={
-user,loader,registerUser,loginWithGoogle,emailSignIn,logOutUser,forgetPassword
+user,loader,registerUser,loginWithGoogle,emailSignIn,logOutUser,forgetPassword,setUser
 }
   return (
     <>

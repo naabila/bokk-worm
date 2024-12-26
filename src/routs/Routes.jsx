@@ -13,7 +13,7 @@ import Login from "../pages/Login";
 import Error from "../pages/Error";
 import Register from "../pages/Register";
 import Update from "../pages/Update"
-import useAxiosSecure from "../hook/useAxiosSecure";
+import PrivateRout from "../utils/PrivateRout";
 
 const router = createBrowserRouter([
   
@@ -27,11 +27,11 @@ const router = createBrowserRouter([
       },
       {
         path:"/addbooks",
-        element: <AddBooks></AddBooks>,
+        element: <PrivateRout><AddBooks></AddBooks></PrivateRout>,
       },
       {
         path:"/allbooks",
-        element:<AllBooks></AllBooks>
+        element: <PrivateRout><AllBooks></AllBooks></PrivateRout>
       },
       {
         path:"/bookdetails/:id",
@@ -39,11 +39,15 @@ const router = createBrowserRouter([
           fetch(`${import.meta.env.VITE_API_URL}/book-data/${params.id}`, {
             credentials: 'include',
           }),
-        element: <BookDetails></BookDetails>
+        element: <PrivateRout><BookDetails></BookDetails></PrivateRout>
       },
       {
-        path:"/borrowedbooks",
-        element: <BorrowedBooks />
+        path:"/borrowedbooks/:email",
+        loader: ({ params }) =>
+          fetch(`${import.meta.env.VITE_API_URL}/borrowed/${params.email}`, {
+            credentials: 'include',
+          }),
+        element: <PrivateRout><BorrowedBooks /></PrivateRout>
       },
       {
         path:'/bookcategory/:category',
@@ -51,7 +55,7 @@ const router = createBrowserRouter([
           fetch(`${import.meta.env.VITE_API_URL}/book-category/${params.category}`, {
             credentials: 'include',
           }),
-        element: <CategoryBooks></CategoryBooks>
+        element: <PrivateRout><CategoryBooks></CategoryBooks></PrivateRout>
       },
       {
         path:'/login',

@@ -43,8 +43,8 @@ function Home() {
       },[axios])
     const fetchBookData=async ()=>{
     try{
-      const {data}=axios.get('/add-books')
-      .then(res=>setBooks(res.data))
+      const {data}=await axios.get('/add-books')
+      setBooks(data)
     }catch(err){
       console.log("Error loading Books data",err)
     }

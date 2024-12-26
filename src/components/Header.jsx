@@ -16,7 +16,7 @@ const handleLogout=()=>{
     <NavLink to='/' className={ ({isActive})=>isActive?"text-red-500 text-base":"text-base"}>Home</NavLink>
     <NavLink to='/addbooks' className={ ({isActive})=>isActive?"text-red-500 text-base":"text-base"}>Add Books</NavLink>
     <NavLink to='/allbooks' className={ ({isActive})=>isActive?"text-red-500 text-base":"text-base"}>All Books</NavLink>
-    <NavLink to='/borrowedbooks' className={ ({isActive})=>isActive?"text-red-500 text-base":"text-base"}>Borrowed Books</NavLink>
+    <NavLink to={`/borrowedbooks/${user?.email}`} className={ ({isActive})=>isActive?"text-red-500 text-base":"text-base"}>Borrowed Books</NavLink>
   </>
   return (
    <div className="lg:w-[90%] mx-auto">
@@ -41,10 +41,10 @@ const handleLogout=()=>{
         tabIndex={0}
         className="menu menu-sm dropdown-content bg-base-100 rounded-box mt-3 w-52 p-2 shadow gap-5 z-50">
         {links}
-        <Link to='login'>
+        <Link to='/login'>
       <button className='bg-red-500 text-white px-8 py-3 hover:bg-black transition md:hidden flex'>Login</button>
     </Link>
-    <Link to='register'>
+    <Link to='/register'>
       <button className='bg-red-500 text-white px-8 py-3 hover:bg-black transition md:hidden flex'>Register</button>
     </Link>
       </ul>

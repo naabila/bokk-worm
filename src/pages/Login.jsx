@@ -6,11 +6,13 @@ import { AuthContext } from "../utils/AuthProvider";
 import { Fade } from 'react-awesome-reveal';
 
 function Login() {
-  const { loginWithGoogle,forgetPassword,theme,emailSignIn } = useContext(AuthContext);
+  const { loginWithGoogle,forgetPassword,theme,emailSignIn,setUser } = useContext(AuthContext);
   const googleProvider = new GoogleAuthProvider();
-  const emailRef=useRef();
+  
   const navigate=useNavigate();
-  const location=useLocation();
+  const location=useLocation()
+  const emailRef=useRef();
+
 
 
   // Google login
@@ -33,7 +35,8 @@ const handleEmailLogin=(e)=>{
     //email login function
     emailSignIn(email,password)
     .then(res=>{
-      e.target.reset()
+      setUser(res.user) 
+      e.target.reset();
       toast.success("Login successfull");
       navigate(location?.state?location.state:"/")
     })

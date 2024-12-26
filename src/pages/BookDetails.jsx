@@ -14,48 +14,55 @@ const axios=useAxiosSecure();
 
   
   //borrow book function
-  const handleBorrowBook=async(e)=>{
+const handleBorrowBook = async (e) => {
     e.preventDefault();
-    const form=e.target;
-    const email=form.email.value;
-    const userName=form.userName.value;
-    const borrowDate=new Date().toLocaleDateString();
-    const returnDate=form.returnDate.value;
-    const coverImage=loadDetails?.image;
-    const title=loadDetails?.name;
-    const category=loadDetails?.book_category;
-    const bookId=loadDetails?._id;
+    const form = e.target;
+    const email = form.email.value;
+    const userName = form.userName.value;
+    const borrowDate = new Date().toLocaleDateString();
+    const returnDate = form.returnDate.value;
+    const coverImage = loadDetails?.image;
+    const title = loadDetails?.name;
+    const category = loadDetails?.book_category;
+    const bookId = loadDetails?._id;
+  
+    const borrowData = {
+      email,
+      userName,
+      borrowDate,
+      returnDate,
+      coverImage,
+      title,
+      category,
+      bookId,
+    };
+  
+    console.log(borrowData);
+  
+    try {
+      const res = await axios.post(`${import.meta.env.VITE_API_URL}/borrow-books`, borrowData);
+  
+     
+      if (res.status === 200 || res.status === 201) {
+        const updatedQuantity = quantity - 1;
+        setQuantity(updatedQuantity);
+        toast.success("Book borrowed successfully!");
+      }
+    } catch (error) {
+      
+      if (error.response && error.response.status === 400) {
+        
+        toast.error("You have already borrowed this book!");
+      } else {
+        
+        toast.error("Can't borrow this book. Please try again.");
+      }
+      console.error(error);
+    }
 
-    const borrowData={
-  email,
-userName,
-borrowDate,
-returnDate,
-coverImage,
-title,
-category,
-bookId
-}
-console.log(borrowData)
-//post borrow data
-try{
-  axios.post(`${import.meta.env.VITE_API_URL}/borrow-books`, borrowData)
-  .then(res=>{
-    const updatedQuantity = quantity - 1; 
-      setQuantity(updatedQuantity);
-      toast.success("Book borrowed successfully!")
-  })
-}catch(err){
-console.log(err)
-}
-
-
-
-
-//close modal
     document.getElementById('borrow-book').close()
-  }
- 
+  };
+  
   return (
     <>
     <SectionBanner title="See Details" />

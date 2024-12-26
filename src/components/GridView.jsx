@@ -17,6 +17,7 @@ function GridView({books}) {
   </figure>
   <div className="card-body items-center text-center">
     <h2 className="card-title text-red-500">{book.name}</h2>
+    <p> <span className='font-bold text-red-500'>Quantity:</span> {book.quantity}</p>
     <p>{book.description.substring(0,50)}...</p>
     <Rating
       emptySymbol=<FaRegStar className='text-yellow-600' />
