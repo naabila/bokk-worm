@@ -284,6 +284,7 @@ console.log(books.book_category)
         backgroundImage:
           "url('https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080')",
           backgroundSize:"cover",
+          objectFit: 'cover',
           backgroundPosition: "center center" 
       }}
     >
@@ -292,8 +293,7 @@ console.log(books.book_category)
 
     }}></div>
       <div className="container mx-auto text-center">
-        <h2 className="text-4xl font-bold mb-4">What People Say</h2>
-        <div className="divider w-20 mx-auto"></div>
+       
 
         <Swiper
           pagination={{ clickable: true }}
@@ -303,7 +303,7 @@ console.log(books.book_category)
         >
           {testimonials.map((testimonial, index) => (
             <SwiperSlide key={index}>
-              <div className="max-w-2xl mx-auto text-center">
+              <div className="max-w-2xl mx-auto text-center py-10">
                 <p className="italic text-lg mb-6">{testimonial.message}</p>
                 <div className="flex justify-center items-center gap-4">
                   <img

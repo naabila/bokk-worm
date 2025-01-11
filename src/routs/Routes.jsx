@@ -71,7 +71,7 @@ const router = createBrowserRouter([
           fetch(`${import.meta.env.VITE_API_URL}/book-data/${params.id}`, {
             credentials: 'include',
           }),
-        element: <Update></Update>
+        element: <PrivateRout><Update></Update></PrivateRout>
       }
     ]
   },
