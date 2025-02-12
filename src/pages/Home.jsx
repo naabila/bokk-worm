@@ -16,6 +16,7 @@ import { Fade } from 'react-awesome-reveal';
 import useAxiosSecure from '../hook/useAxiosSecure';
 import SectionHeadings from '../components/SectionHeadings';
 import FAQ from '../components/Faq';
+import Newsletter from '../components/Newsletter';
 
 
 //testimonial
@@ -327,6 +328,7 @@ console.log(books.book_category)
     
     {/* Faq */}
     <FAQ />
+    <Newsletter />
     </div>
   </>
   )
