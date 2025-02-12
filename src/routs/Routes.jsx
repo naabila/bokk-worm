@@ -14,6 +14,7 @@ import Error from "../pages/Error";
 import Register from "../pages/Register";
 import Update from "../pages/Update"
 import PrivateRout from "../utils/PrivateRout";
+import About from "../pages/About";
 
 const router = createBrowserRouter([
   
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
       {
         path:'/',
         element:<Home />
+      },
+      {
+        path:'/about',
+        element:<About />
       },
       {
         path:"/addbooks",

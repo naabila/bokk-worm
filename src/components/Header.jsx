@@ -43,6 +43,14 @@ function Header() {
         Home
       </NavLink>
       <NavLink
+        to="/about"
+        className={({ isActive }) =>
+          isActive ? "text-red-500 text-base" : "text-base"
+        }
+      >
+        About Us
+      </NavLink>
+      <NavLink
         to="/addbooks"
         className={({ isActive }) =>
           isActive ? "text-red-500 text-base" : "text-base"
