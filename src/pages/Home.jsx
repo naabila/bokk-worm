@@ -15,6 +15,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Fade } from 'react-awesome-reveal';
 import useAxiosSecure from '../hook/useAxiosSecure';
 import SectionHeadings from '../components/SectionHeadings';
+import FAQ from '../components/Faq';
+
 
 //testimonial
 
@@ -107,7 +109,7 @@ console.log(books.book_category)
   }} >
           
            <div className='flex flex-col justify-center items-center h-full'>
-              <Fade direction='up'>
+              <Fade direction='up' triggerOnce={true}>
               <h1 className='font-bold text-5xl'>{slide.title}</h1>
               <p className='my-5'>{slide.subTitle}</p>
               <button onClick={()=>navigate('/allbooks')} className='bg-red-500 text-white px-8 py-3 hover:bg-black transition'>See More</button>
@@ -198,7 +200,7 @@ console.log(books.book_category)
 {/* extra 1 */}
 <div className="container relative mx-auto py-16 px-4 grid md:grid-cols-2 gap-8 items-center">
       {/* Text and Features */}
-      <Fade direction='left'>
+      <Fade direction='left' triggerOnce={true}>
       <div>
         {/* Heading and Subtext */}
         <h2 className='text-3xl font-bold mb-5'>About Us</h2>
@@ -263,7 +265,7 @@ console.log(books.book_category)
       </Fade>
 
       {/* Image */}
-      <Fade direction='right'>
+      <Fade direction='right' triggerOnce={true}>
       <div className="relative">
         <img
           src={About}
@@ -323,6 +325,8 @@ console.log(books.book_category)
       </div>
     </div>
     
+    {/* Faq */}
+    <FAQ />
     </div>
   </>
   )
