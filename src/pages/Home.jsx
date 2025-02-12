@@ -17,6 +17,7 @@ import useAxiosSecure from '../hook/useAxiosSecure';
 import SectionHeadings from '../components/SectionHeadings';
 import FAQ from '../components/Faq';
 import Newsletter from '../components/Newsletter';
+import PopulerBooks from '../components/PopulerBooks';
 
 
 //testimonial
@@ -64,14 +65,15 @@ const sliderContent=[
   }
 ]
 function Home() {
-  const[books,setBooks]=useState([])
+  const[books,setBooks]=useState([]);
+  const[populerBooks,setPopulerBooks]=useState([])
   const axios=useAxiosSecure()
   //fecthing book data
   useEffect(()=>{
     fetchBookData()
     
-      },[axios])
-    const fetchBookData=async ()=>{
+      },[axios]);
+const fetchBookData=async ()=>{
     try{
       const {data}=await axios.get('/add-books')
       setBooks(data)
@@ -79,10 +81,23 @@ function Home() {
       console.log("Error loading Books data",err)
     }
     }
-    console.log(books)
-console.log(books.book_category)
+ 
+    //fecthing populer book data
+  useEffect(()=>{
+    fetchPopulerBookData()
+    
+      },[axios]);  
+    //Populer Books
+    const fetchPopulerBookData=async ()=>{
+      try{
+        const {data}=await axios.get('/populer')
+        setPopulerBooks(data)
+      }catch(err){
+        console.log("Error loading Books data",err)
+      }
+      }
 
-
+console.log(populerBooks)
 
   const navigate=useNavigate();
   return (
@@ -277,6 +292,8 @@ console.log(books.book_category)
       </div>
       </Fade>
     </div>
+
+    <PopulerBooks populerBooks={populerBooks} />
     {/* extra2 */}
     <div className='mt-10'>
       <SectionHeadings title='What People Say About Us' />
