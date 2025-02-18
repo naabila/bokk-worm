@@ -6,6 +6,7 @@ The Library Management System is a user-friendly web application designed for a 
 
 ## Live URL
 https://book-worm-3ae7b.web.app/
+![Screenshot](https://github.com/naabila/book-worm/blob/master/Book-Worm-02-19-2025_12_45_AM.png?raw=true)
 
 ## Key Features
 
